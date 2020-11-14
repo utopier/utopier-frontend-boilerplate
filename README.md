@@ -325,18 +325,33 @@
 - git commit -m 'First Commit'
 - github.com -> Create a new repository
 - git remote add origin https://github.com/utopier/utopier-frontend-boilerplate.git
-- git push -u origin main
+- git push --set-upstream origin master
+- git push
 
 2. GitFlow
+
+- 5개 Branch
+  1. master
+  2. develop
+  3. features
+  4. release
+  5. hotfix
+
 3. Jira
 
+- **프로젝트 생성**
+  - 프로젝트 만들기 -> 차세대 프로젝트 -> 이름 및 키 입력후 생성
+  - 이슈 생성 후 -> 담당자 지정 -> 스프린트 생성 후 이슈 옮기기 -> 첫번째 스프린트 생성
+- **Github 연결**
+  - 프로젝트 설정 -> App Market -> Github For Jira -> Get it now -> Manage Organizations
+  - 프로젝트 -> 항목 추가 -> 리포지토리 연결 -> Github -> https://github.com/utopier/utopier-frontend-boilerplate.git
 - **Smart Commit**
 
 4. Confluence
 5. Slack
 
-- **Jira**
-- **Github**
+- **Jira 연결**
+- **Github 연결**
 
 ---
 
