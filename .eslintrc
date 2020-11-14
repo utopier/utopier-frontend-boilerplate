@@ -36,7 +36,8 @@
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "react/react-in-jsx-scope": "off",
         "import/no-unresolved": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "react/jsx-props-no-spreading": "off"
     },
-    "ignorePatterns": ["dist/", "node_modules/","setupTests.js","babel.config.js","**/*.test.*"]
+    "ignorePatterns": ["dist/", "node_modules/","designSystem","setupTests.js","babel.config.js","**/*.test.*"]
 }

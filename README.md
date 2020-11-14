@@ -396,29 +396,265 @@
 ## 3. Markup & Design & CSS
 
 1. Figma
-2. Storybook
-3. CSS In Js(emotion)
+2. CSS In Js(emotion)
+
+- npm i @emotion/react @emotion/styled
+- **Policy**
+
+  - @emotion/styled의 styled 사용
+  - htmltagname은 semantic html 사용
+  - changing based on props 활용
+  - Nesting components & 활용
+  - Media Queries 활용
+
+    ```javascript
+    const HomeWrapper = styled.htmltagname`
+      color: ${(props) => (props.mainColor ? props.mainColor : 'white')};
+      & > a {
+        color: blue;
+      }
+      @media (min-width: 480px) {
+        font-size: 12px;
+      }
+    `;
+    ```
+
+  - Global Styles 활용
+  - npm i emotion-reset @emotion/core
+  - \_app.js
+
+    ```javascript
+    import emotionReset from 'emotion-reset';
+    import { Global, css } from '@emotion/core';
+
+    render(
+      <Global
+        styles={css`
+          ${emotionReset}
+
+          *, *::after, *::before {
+            box-sizing: border-box;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+          }
+        `}
+      />
+    );
+    ```
+
+  - animation은 keyframes 활용
+
+    ```javascript
+    /** @jsx jsx */
+    import { jsx, css, keyframes } from '@emotion/react';
+
+    const bounce = keyframes`
+      from, 20%, 53%, 80%, to {
+        transform: translate3d(0,0,0);
+      }
+    
+      40%, 43% {
+        transform: translate3d(0, -30px, 0);
+      }
+    
+      70% {
+        transform: translate3d(0, -15px, 0);
+      }
+    
+      90% {
+        transform: translate3d(0,-4px,0);
+      }
+    `;
+
+    render(
+      <div
+        css={css`
+          animation: ${bounce} 1s ease infinite;
+        `}
+      >
+        some bouncing text!
+      </div>
+    );
+    ```
+
+  - Theming 활용
+
+    ```javascript
+    /** @jsx jsx */
+    import { jsx, ThemeProvider } from '@emotion/react';
+    import styled from '@emotion/styled';
+
+    const theme = {
+      colors: {
+        primary: 'hotpink',
+      },
+    };
+
+    const SomeText = styled.div`
+      color: ${(props) => props.theme.colors.primary};
+    `;
+
+    render(
+      <ThemeProvider theme={theme}>
+        <SomeText>some text</SomeText>
+      </ThemeProvider>
+    );
+    ```
+
+  - Attaching Props
+  - Labels
+  - Server Side Rendering
+  - CacheProvider
+  - pages/\_app.tsx 에 css rest 및 Global Styles 지정
+  - styles/global-styles.ts
+  - styels/theme.ts
+    - 공통 컬러 및 디자인
+
+3. Storybook
+
+- mkdir designSystem
+- cd designSystem
+- npx -p @storybook/cli sb init --type react
+- rmdir stories
+- mkdir src
+- .storybook/main.js
+
+  ```javascript
+  module.exports = {
+    stories: ['../src/**/**/*.stories.(js|mdx|tsx)'],
+    addons: [
+      '@storybook/addon-docs',
+      '@storybook/addon-actions',
+      '@storybook/addon-links',
+      '@storybook/addon-knobs',
+    ],
+    typescript: {
+      check: false,
+      checkOptions: {},
+      reactDocgen: 'react-docgen-typescript',
+      reactDocgenTypescriptOptions: {
+        shouldExtractLiteralValuesFromEnum: true,
+        propFilter: (prop) =>
+          prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      },
+    },
+    webpackFinal: async (config, { configType }) => {
+      config.module.rules.push({
+        test: /\.(ts|tsx)$/,
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              presets: [['react-app', { flow: false, typescript: true }]],
+              plugins: [
+                [
+                  require.resolve('babel-plugin-named-asset-import'),
+                  {
+                    loaderMap: {
+                      svg: {
+                        ReactComponent:
+                          '@svgr/webpack?-svgo,+titleProp,+ref![path]',
+                      },
+                    },
+                  },
+                ],
+              ],
+            },
+          },
+        ],
+      });
+
+      return config;
+    },
+  };
+  ```
+
+- touch tsconfig.json
+
+  ```json
+  {
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react"
+    },
+    "include": ["src"]
+  }
+  ```
+
+- npm i -D @storybook/addon-knobs @storybook/addon-docs babel-preset-react-app react-docgen-typescript-loader typescript
+- src/typing.d.ts
+
+  ```typescript
+  declare module '*.mdx';
+  declare module '*.svg' {
+    import * as React from 'react';
+
+    export const ReactComponent: React.FunctionComponent<React.SVGProps<
+      SVGSVGElement
+    >>;
+
+    const src: string;
+    export default src;
+  }
+  ```
+
+- npm i @emotion/core@10.0.35
+- npm i -D babel-plugin-named-asset-import
+- npm i react-spring
+
 4. UIUX
+
+- https://developers.google.com/web/fundamentals/design-and-ux/ux-basics
+
 5. AppShellModel
+
+- https://developers.google.com/web/fundamentals/architecture/app-shell
+
 6. Responsive
+
+- https://web.dev/responsive-web-design-basics/
+
 7. Layout(Grid & Flex)
 8. Accessible Style
+
+- https://web.dev/accessible/#create-a-design-and-css-that-supports-users-with-different-needs
+
 9. Animation
+
+- https://developers.google.com/web/fundamentals/design-and-ux/animations
+
 10. DarkMode
 
 ---
 
-## 4. StateManagement
+## 4. StateManagement( TodoApp 에서 설정)
 
-1. Context
-2. Rxjs
-3. Redux & Redux Saga
-4. Mobx
-5. Apollo
+1. Context(store/context)
+
+2. Rxjs(store/rxjs)
+
+3. Redux & Redux Saga(store/redux)
+
+4. Mobx(store/mobx)
+
+5. Apollo(store/apollo)
 
 ---
 
-## 5. DataVisual(d3js)
+## 5. DataVisual(d3js : Bar, Line, Pie, Map)
 
 ---
 
