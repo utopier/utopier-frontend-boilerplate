@@ -385,6 +385,11 @@
   - /github subscribe utopier
   - /github subscribe utopier/utopier-frontend-boilerplate
   - /github subscribe list features
+  - git add .
+  - git commit -m 'Slack Github 연결'
+  - git push
+  - Slack Github 앱에서 알림 확인.
+  - 해당 프로젝트 채널 -> /github subscribe utopier/utopier-frontend-boilerplate
 
 ---
 
