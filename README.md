@@ -347,10 +347,10 @@
   - 프로젝트 -> 항목 추가 -> 리포지토리 연결 -> Github -> https://github.com/utopier/utopier-frontend-boilerplate.git
 - **Smart Commit**
   - git add .
-  - git commit -m 'UTB-1 Smart Commit Test'
-    - 'UTB-1 #comment Smart Commit Test'
-    - 'UTB-1 #time 1w 3d 5h 30m Total work logged'
-    - 'UTB-1 #close Fixed this today'
+  - git commit -m 'UFB-1 Smart Commit Test'
+    - 'UFB-1 #comment Smart Commit Test'
+    - 'UFB-1 #time 1w 3d 5h 30m Total work logged'
+    - 'UFB-1 #close Fixed this today'
   - git push
 
 4. Confluence
