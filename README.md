@@ -356,8 +356,35 @@
 4. Confluence
 5. Slack
 
+- 새 워크스페이스 생성
 - **Jira 연결**
+
+  - Apps -> jira cloud 추가
+  - jira -> /jira connect -> 프로젝트 및 채널 설정 후 connect
+  - Jira 프로젝트 -> Slack Integration -> 알림 세팅
+
+  1. Slack에서 Jira 이슈 등록
+
+  - /jira create
+  - 해당 채널 및 지라 백로그 및 Slack Jira App 변경 확인
+
+  2. Slack에서 Jira 이슈 할당
+
+  - Slack jira App 채널에서 해당 이슈 Assign 으로 담당자 할당하기
+
+  3. Slack에서 Jira 이슈 상태 변경
+
+  - Slcak jira App 채널에서 해당 이슈 Transition 버튼으로 이슈 상태 변경
+
+  4. Slack에서 Jira 이슈 코멘트 남기기
+
+  - Slcak jira App 채널에서 해당 이슈 Comment로 댓글 남기기
+
 - **Github 연결**
+  - Apps -> GitHub 추가
+  - /github subscribe utopier
+  - /github subscribe utopier/utopier-frontend-boilerplate
+  - /github subscribe list features
 
 ---
 
