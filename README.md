@@ -346,6 +346,9 @@
   - 프로젝트 설정 -> App Market -> Github For Jira -> Get it now -> Manage Organizations
   - 프로젝트 -> 항목 추가 -> 리포지토리 연결 -> Github -> https://github.com/utopier/utopier-frontend-boilerplate.git
 - **Smart Commit**
+  - git add .
+  - git commit -m 'UTB-1 Smart Commit Test'
+  - git push
 
 4. Confluence
 5. Slack
